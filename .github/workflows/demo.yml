@@ -1,7 +1,7 @@
 name: demo
 on:
  push:
-  branchs:
+  branches:
    - master
 
 jobs: 
