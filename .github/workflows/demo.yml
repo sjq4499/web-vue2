@@ -1,24 +1,26 @@
 name: demo
 on:
- push:
-  branches:
-   - master
+  push:
+    branches:
+      - master
 
-jobs: 
-  demo:
-    run-on: ubuntu-latest
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
-     - name: Checkout
-        uses: actions/checkout@master # 获取master代码
+      - name: Checkout
+        uses: actions/checkout@master #
         with:
           persist-credentials: false
       - name: Install and Build
-        run: | #执行多个命令
+        run: |
           npm install
           npm run build
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3 # 写好的action
+
         with:
-          ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }} #自定义生成key 生成步骤在下面
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
           BRANCH: gh-pages #操作应部署到的分支。
           FOLDER: dist #操作应部署的文件夹。
