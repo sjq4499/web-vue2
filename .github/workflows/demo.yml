@@ -6,8 +6,8 @@ on:
 
 jobs: 
   demo:
-   run-on: ubuntu-latest
-  steps:
+    run-on: ubuntu-latest
+    steps:
      - name: Checkout
         uses: actions/checkout@master # 获取master代码
         with:
