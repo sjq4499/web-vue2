@@ -1,7 +1,19 @@
 <template>
   <div class="love">
     <canvas id="pinkboard"></canvas>
+
     <div class="love_you" v-if="name">{{ name }}</div>
+
+    <template v-if="list.length > 0">
+      <div class="love_you" v-if="index < list.length && isShow">
+        {{ list[index] }}
+      </div>
+      <div v-else class="love_you love_you_list">
+        <div v-for="(item, index) in list" :key="index">
+          {{ item }}
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 <script>
@@ -10,20 +22,52 @@ export default {
   data() {
     return {
       name: '',
+      list: [],
       type: '',
       typeobj: {
-        '0000': '心动瑶',
+        '0000': '暂无此人',
+        1111: '狗仔',
         1234: '云哥',
         2345: '李书云',
+        11111: ['你若不嫌弃', '不知庭树意', '要醉对清凉', '脸横秋水溢'],
+        22222: [
+          '我欲万里寻觅你',
+          '喜忧如常也如是',
+          '欢愉苦短夜色白',
+          '你知我心为谁痴',
+        ],
       },
+      index: 0,
+      time: null,
+      isShow: true,
     };
   },
   created() {
+    // encodeURI('云')
     this.type = this.$route.query.type;
     if (this.type) {
-      this.name = this.typeobj[this.type];
+      if (this.type.length >= 5) {
+        this.list = this.typeobj[this.type];
+      } else {
+        this.name = this.typeobj[this.type];
+      }
     } else {
-      this.name = this.$route.query.name;
+      let name = this.$route.query.name;
+      if (name.indexOf(',') !== -1) {
+        this.list = name.split(',');
+      } else {
+        this.name = name;
+      }
+    }
+    if (this.list.length > 0) {
+      this.time = setInterval(() => {
+        this.isShow = false;
+        this.index++;
+        this.isShow = true;
+        if (this.index >= this.list.length) {
+          clearInterval(this.time);
+        }
+      }, 2000);
     }
   },
   computed: {},
@@ -336,6 +380,9 @@ canvas {
   animation: love-xf 1.2s alternate ease-in-out;
   user-select: none;
   text-shadow: 0 0 8px #fff;
+}
+.love_you_list {
+  top: 40%;
 }
 @keyframes love-xf {
   0% {
