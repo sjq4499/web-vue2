@@ -1,13 +1,19 @@
 <template>
   <div class="love">
     <canvas id="pinkboard"></canvas>
+    <div class="love_you" v-if="name">{{ name }}</div>
   </div>
 </template>
 <script>
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      name: '',
+    };
+  },
+  created() {
+    this.name = this.$route.query.name;
   },
   computed: {},
   watch: {},
@@ -305,5 +311,21 @@ canvas {
   position: absolute;
   width: 100%;
   height: 100%;
+}
+.love_you {
+  position: absolute;
+  left: 50%;
+  z-index: 999;
+  top: 45%;
+  transform: translateX(-50%);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffc0cb;
+  letter-spacing: 0.05rem;
+  animation: love-xf 1.2s alternate ease-in-out;
+  user-select: none;
+  -webkit-text-shadow: 0 0 8px #fff;
+  text-shadow: 0 0 8px #fff;
 }
 </style>
