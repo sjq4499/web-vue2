@@ -6,7 +6,7 @@ function resolve(dir) {
 }
 
 module.exports = defineConfig({
-  publicPath: '/demo/',
+  publicPath: '/web-vue2/',
   transpileDependencies: true,
   configureWebpack: {
     resolve: {
