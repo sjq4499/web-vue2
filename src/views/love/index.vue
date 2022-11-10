@@ -10,10 +10,21 @@ export default {
   data() {
     return {
       name: '',
+      type: '',
+      typeobj: {
+        '0000': '心动瑶',
+        1234: '云哥',
+        2345: '李书云',
+      },
     };
   },
   created() {
-    this.name = this.$route.query.name;
+    this.type = this.$route.query.type;
+    if (this.type) {
+      this.name = this.typeobj[this.type];
+    } else {
+      this.name = this.$route.query.name;
+    }
   },
   computed: {},
   watch: {},
@@ -318,14 +329,25 @@ canvas {
   z-index: 999;
   top: 45%;
   transform: translateX(-50%);
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.3rem;
   font-weight: bold;
   color: #ffc0cb;
   letter-spacing: 0.05rem;
   animation: love-xf 1.2s alternate ease-in-out;
   user-select: none;
-  -webkit-text-shadow: 0 0 8px #fff;
   text-shadow: 0 0 8px #fff;
+}
+@keyframes love-xf {
+  0% {
+    opacity: 0.08;
+    filter: blur(8px);
+    letter-spacing: 0.1rem;
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    letter-spacing: 0.05rem;
+  }
 }
 </style>
