@@ -53,8 +53,8 @@ export default {
       }
     } else {
       let name = this.$route.query.name;
-      if (name.indexOf(',') !== -1) {
-        this.list = name.split(',');
+      if (name.indexOf(',') !== -1 || name.indexOf('，') !== -1) {
+        this.list = name.replace('，', ',').split(',');
       } else {
         this.name = name;
       }
