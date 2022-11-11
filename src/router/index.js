@@ -28,6 +28,22 @@ const routes = [
     name: '3dlove',
     component: () => import('@/views/love/3dlove.vue'),
   },
+  {
+    path: '/photo1',
+    name: 'photo1',
+    component: () => import('@/views/photo/index1.vue'),
+  },
+  {
+    path: '/photo2',
+    name: 'photo2',
+    component: () => import('@/views/photo/index2.vue'),
+  },
+  {
+    path: '/photo3',
+    name: 'photo3',
+    component: () => import('@/views/photo/index3.vue'),
+  },
+
   // {
   //   path: '/loveTree',
   //   name: 'loveTree',
