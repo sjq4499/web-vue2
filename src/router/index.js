@@ -23,6 +23,16 @@ const routes = [
     name: 'progress',
     component: () => import('@/views/progress/index.vue'),
   },
+  {
+    path: '/3dlove',
+    name: '3dlove',
+    component: () => import('@/views/love/3dlove.vue'),
+  },
+  // {
+  //   path: '/loveTree',
+  //   name: 'loveTree',
+  //   component: () => import('@/views/love/tree.vue'),
+  // },
 ];
 
 const router = new VueRouter({
